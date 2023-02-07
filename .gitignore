@@ -1,0 +1,10 @@
+/build
+/.gradle
+.idea
+/demo/build/
+/compiler-plugin/build/
+/gradle-plugin/build/
+/intellij-plugin/build/
+# Project exclude paths
+/compiler-plugin/.gradle/
+/gradle-plugin/.gradle/
