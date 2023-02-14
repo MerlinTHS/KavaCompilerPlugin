@@ -1,6 +1,7 @@
 package com.mths.kava.demo
 
-import com.github.merlinths.kava.validator.*
+import io.mths.kava.result.onFailure
+import io.mths.kava.validator.*
 
 fun main() {
     validate {

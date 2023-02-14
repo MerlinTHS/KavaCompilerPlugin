@@ -1,24 +1,28 @@
-import com.mths.kava.KavaMode
+import io.mths.kava.gradle.extensions.generated.GeneratedFileExtension
+import io.mths.kava.gradle.extensions.generated.GeneratedFiles
+import io.mths.kava.gradle.extensions.generated.GeneratedPackage
 
 plugins {
     kotlin("multiplatform")
-    id("com.mths.kava")
+    id("io.github.merlinths.kava")
 }
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-    }
+    js()
+    jvm()
 }
 
 kava {
     enabled = true
-    mode = KavaMode.Explicit
+
+    processor {
+        generatedFiles = GeneratedFiles.Separate(
+            packageName = GeneratedPackage.Infer,
+            fileExtension = GeneratedFileExtension.Static("Extensions")
+        )
+    }
 }
