@@ -1,0 +1,22 @@
+package io.mths.kava.gradle
+
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
+import org.junit.jupiter.api.Test
+import kotlin.test.assertFalse
+
+class JvmPlatformCheckTest {
+    @Test
+    fun jvm() {
+        assert(KotlinPlatformType.jvm.isJvm())
+    }
+
+    @Test
+    fun androidJvm() {
+        assert(KotlinPlatformType.androidJvm.isJvm())
+    }
+
+    @Test
+    fun `javascript is not jvm`() {
+        assertFalse(KotlinPlatformType.js.isJvm())
+    }
+}

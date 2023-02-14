@@ -1,4 +1,4 @@
-package com.mths.kava
+package io.mths.kava.gradle
 
 enum class KavaMode {
     Implicit,

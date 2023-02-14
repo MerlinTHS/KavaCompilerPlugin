@@ -1,5 +1,6 @@
-package com.mths.kava
+package io.mths.kava.gradle
 
+import io.mths.kava.gradle.extensions.createKavaExtension
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
@@ -10,7 +11,7 @@ class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
     override fun applyToCompilation(
         kotlinCompilation: KotlinCompilation<*>
     ): Provider<List<SubpluginOption>> = kotlinCompilation.run {
-        addKavaRepository()
+        addMavenCentralRepository()
         addKavaDependency()
         addContextReceivers()
 
@@ -23,9 +24,15 @@ class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
         super.apply(target)
     }
 
-    override fun getCompilerPluginId(): String = "kavaPlugin"
+    override fun getCompilerPluginId() = "kavaPlugin"
 
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>) = true
+    override fun isApplicable(
+        kotlinCompilation: KotlinCompilation<*>
+    ): Boolean =
+        kotlinCompilation
+        .platformType
+        .isJvm()
 
-    override fun getPluginArtifact() = Dependency.subPlugin
+    override fun getPluginArtifact() =
+        Dependency.compilerPlugin
 }

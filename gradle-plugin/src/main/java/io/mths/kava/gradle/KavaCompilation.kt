@@ -1,6 +1,5 @@
-package com.mths.kava
+package io.mths.kava.gradle
 
-import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.repositories
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 
@@ -9,18 +8,20 @@ internal fun KotlinCompilation<*>.provideKavaOptions() =
         provider(::kavaOptions)
     }
 
-internal fun KotlinCompilation<*>.addKavaRepository() {
+internal fun KotlinCompilation<*>.addMavenCentralRepository() {
     target.project.repositories {
-        maven(url = "https://jitpack.io")
+        mavenCentral()
     }
 }
 
 internal fun KotlinCompilation<*>.addKavaDependency() {
-    allKotlinSourceSets
-        .find { "jvm" in it.name } // TODO: Remove when Kava is multiplatform
-        ?.dependencies {
-            implementation(Dependency.core)
+    if (platformType.isJvm()) {
+        kotlinSourceSets.forEach {
+            it.dependencies {
+                implementation(Dependency.core)
+            }
         }
+    }
 }
 
 internal fun KotlinCompilation<*>.addContextReceivers() {
@@ -28,7 +29,6 @@ internal fun KotlinCompilation<*>.addContextReceivers() {
 
     kotlinOptions {
         if (contextArg !in freeCompilerArgs) {
-            println("Adding context receivers to compiler arguments!")
             freeCompilerArgs += contextArg
         }
     }
