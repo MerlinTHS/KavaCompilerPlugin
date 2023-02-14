@@ -41,6 +41,6 @@ Kavas gradle-plugin can be added to any kotlin project, but will only be applied
 
 Since it's a compiler plugin, its implementation is tightly coupled to a specific compiler version.
 
-| Kotlin Compiler | *Kava Plugin* |
+| Kotlin Compiler |  Kava Plugin  |
 |:---------------:|:-------------:|
 |     `1.8.0`     |    `1.0.0`    |
