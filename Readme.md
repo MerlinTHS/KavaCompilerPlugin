@@ -1,21 +1,21 @@
 <h1 align="center">Kava Compiler Plugin</h1>
 
-A Kotlin compiler plugin to simplify development with [Kava](https://github.com/MerlinTHS/Kava),
-including [gradle](/gradle-plugin)- and [intellij](/intellij-plugin) - plugin.
+A Kotlin compiler plugin to simplify development with [Kava](https://github.com/MerlinTHS/Kava).
+It ships with a [Gradle-Plugin](/gradle-plugin) to integrate it into your project
+and an [IntelliJ-Plugin](/intellij-plugin) to gain better IDE - assistance.
 
-The plugin does currently only a few things:
-- It adds dependencies to your JVM - compilations ( only multiplatform projects supported yet )
-- It configures the annotation processor as well as the generated source directories of it
-- It wraps the KSP options into a typesafe gradle extension
-
-It also enables support for context receivers, which is required for using Kava.
+The Gradle-Plugin does currently only a few things:
+- Adding dependencies to your JVM - compilations
+- Configuring the annotation processor as well as the generated source directories of it
+- Wrapping the KSP options into a typesafe gradle extension
+- Enabling support for [Context Receivers](https://github.com/Kotlin/KEEP/blob/master/proposals/context-receivers.md), which is required for using Kava.
 
 See [Demo](/demo).
 
-# Installation
+## Getting Started
 
 The plugin is hosted on the [Gradle Plugin Portal](https://plugins.gradle.org/plugin/io.github.merlinths.kava).
-Simply include the id with its [latest version](#versioning).
+Simply apply it in your _build.gradle.kts_.
 
 ```kotlin
 plugins {
@@ -23,21 +23,26 @@ plugins {
 }
 ``` 
 
-Now you can configure kavas annotation processor options in a typesafe manner. 
+Now you can configure [Kavas Annotation Processor](https://github.com/MerlinTHS/Kava#custom-types) options in a typesafe manner. 
 
 ```kotlin
 kava {
-    seperateFiles = true
+    processor {
+        generatedFiles = GeneratedFiles.Separate(
+            packageName = GeneratedPackage.Infer,
+            fileExtension = GeneratedFileExtension.Static("Extensions")
+        )
+    }
 }
 ```
 
-# Supported Platforms
+## Supported Platforms
 
 Kavas gradle-plugin can be added to any kotlin project, but will only be applied on
 - JVM compilations
 - Android (JVM) compilations
 
-# Versioning
+## Versioning
 
 Since it's a compiler plugin, its implementation is tightly coupled to a specific compiler version.
 
