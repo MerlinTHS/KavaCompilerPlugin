@@ -4,7 +4,6 @@ import io.mths.kava.gradle.extensions.generated.GeneratedFileExtension
 import io.mths.kava.gradle.extensions.generated.GeneratedFiles
 import io.mths.kava.gradle.extensions.generated.GeneratedPackage
 
-
 open class ProcessorSettings {
     var generatedFiles: GeneratedFiles =
         GeneratedFiles.Separate(
