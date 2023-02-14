@@ -4,8 +4,10 @@ import io.mths.kava.gradle.KavaMode
 import org.gradle.api.Project
 
 open class KavaExtension {
-    var enabled: Boolean = true
-    var mode: KavaMode = KavaMode.Implicit
+    var enabled = true
+    var mode = KavaMode.Implicit
+
+    var processor = ProcessorSettings()
 }
 
 internal fun Project.createKavaExtension() {
