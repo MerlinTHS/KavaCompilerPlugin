@@ -7,8 +7,6 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 fun configure(
     compilation: KotlinCompilation<*>
 ) = with(compilation) {
-    if (platformType.isJvm()) {
-        configureSharedSettings()
-        configurePlatformSpecificSettings()
-    }
+    configureSharedSettings()
+    configurePlatformSpecificSettings()
 }
