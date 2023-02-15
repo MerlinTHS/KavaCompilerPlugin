@@ -1,10 +1,11 @@
 package io.mths.kava.gradle
 
+import io.mths.kava.gradle.platform.isJvm
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 
-class JvmPlatformCheckTest {
+class JvmPlatformTypeCheckTest {
     @Test
     fun jvm() {
         assert(KotlinPlatformType.jvm.isJvm())
