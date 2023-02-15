@@ -1,4 +1,4 @@
-package com.mths.kava
+package io.mths.kava.compiler
 
 import com.google.auto.service.AutoService
 import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
