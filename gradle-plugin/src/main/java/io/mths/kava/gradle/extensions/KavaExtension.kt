@@ -1,6 +1,5 @@
 package io.mths.kava.gradle.extensions
 
-import io.mths.kava.gradle.KavaMode
 import org.gradle.api.Project
 
 open class KavaExtension {

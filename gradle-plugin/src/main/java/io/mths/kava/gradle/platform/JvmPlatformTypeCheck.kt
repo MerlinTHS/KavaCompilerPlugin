@@ -1,4 +1,4 @@
-package io.mths.kava.gradle
+package io.mths.kava.gradle.platform
 
 import io.mths.kava.gradle.util.isOneOf
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType

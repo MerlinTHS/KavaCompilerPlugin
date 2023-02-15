@@ -1,31 +1,40 @@
 package io.mths.kava.gradle
 
+import io.mths.kava.gradle.config.configure
 import io.mths.kava.gradle.extensions.createKavaExtension
+import io.mths.kava.gradle.options.optionsProvider
+import io.mths.kava.gradle.platform.isJvm
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.repositories
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
     override fun applyToCompilation(
         kotlinCompilation: KotlinCompilation<*>
-    ): Provider<List<SubpluginOption>> = kotlinCompilation.run {
-        addMavenCentralRepository()
-        addKavaDependency()
-        addContextReceivers()
+    ): Provider<List<SubpluginOption>> {
+        configure(kotlinCompilation)
 
-        provideKavaOptions()
+        return kotlinCompilation.optionsProvider
     }
 
-    override fun apply(target: Project) {
-        target.createKavaExtension()
+    override fun apply(target: Project) = with(target) {
+        createKavaExtension()
 
-        super.apply(target)
+        repositories {
+            mavenCentral()
+        }
     }
 
     override fun getCompilerPluginId() = "kavaPlugin"
 
+    /**
+     * Ensures that every configured compilation is a JVM compilation,
+     * so the configuration functions don't need any platform-type validation logic inside.
+     */
     override fun isApplicable(
         kotlinCompilation: KotlinCompilation<*>
     ): Boolean =
@@ -33,6 +42,6 @@ class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
         .platformType
         .isJvm()
 
-    override fun getPluginArtifact() =
+    override fun getPluginArtifact(): SubpluginArtifact =
         Dependency.compilerPlugin
 }

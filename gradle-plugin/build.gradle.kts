@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "io.github.merlinths"
-version = "1.0.1"
+version = "1.0.0"
 
 dependencies {
     implementation(libs.gradle.pluginApi)
