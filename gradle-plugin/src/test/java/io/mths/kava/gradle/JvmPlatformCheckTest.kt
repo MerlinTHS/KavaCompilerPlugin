@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 
-class JvmPlatformTypeCheckTest {
+class JvmPlatformCheckTest {
     @Test
     fun jvm() {
         assert(KotlinPlatformType.jvm.isJvm())
