@@ -1,4 +1,8 @@
-<h1 align="center">Kava Compiler Plugin</h1>
+<h1 align="center">Kava Compiler Plugin
+
+[![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.github.merlinths.kava?style=for-the-badge)]()
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-red.svg?style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
+</h1>
 
 A Kotlin compiler plugin to simplify development with [Kava](https://github.com/MerlinTHS/Kava).
 It ships with a [Gradle-Plugin](/gradle-plugin) to integrate it into your project
@@ -23,7 +27,20 @@ plugins {
 }
 ``` 
 
-Now you can configure [Kavas Annotation Processor](https://github.com/MerlinTHS/Kava#custom-types) options in a typesafe manner. 
+If you want to use the [Kavas Annotation Processor](https://github.com/MerlinTHS/Kava#custom-types),
+you also need to apply the [KSP Compiler - Plugin]() to your project.
+
+```kotlin
+plugins {
+    id("io.github.merlinths.kava") version "1.0.0"
+    id("com.google.devtools.ksp") version "1.8.0-1.0.8"
+}
+```
+
+> It's important to include kava first! Otherwise, the current Kava version will not be able
+> to generate code properly.
+
+Now you can configure the options in a typesafe manner.
 
 ```kotlin
 kava {
