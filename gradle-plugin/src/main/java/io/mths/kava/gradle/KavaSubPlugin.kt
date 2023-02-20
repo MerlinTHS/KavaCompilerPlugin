@@ -4,9 +4,10 @@ import io.mths.kava.gradle.config.configure
 import io.mths.kava.gradle.extensions.createKavaExtension
 import io.mths.kava.gradle.options.optionsProvider
 import io.mths.kava.gradle.platform.isJvm
+import io.mths.kava.gradle.plugins.applyKspPlugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.repositories
+import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
@@ -23,13 +24,13 @@ class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
 
     override fun apply(target: Project) = with(target) {
         createKavaExtension()
+        addRepositories()
 
-        repositories {
-            mavenCentral()
-        }
+        pluginManager.applyKspPlugin()
     }
 
-    override fun getCompilerPluginId() = "kavaPlugin"
+    override fun getCompilerPluginId() =
+        "kavaPlugin"
 
     /**
      * Ensures that every configured compilation is a JVM compilation,
@@ -37,11 +38,16 @@ class KavaSubPlugin : KotlinCompilerPluginSupportPlugin {
      */
     override fun isApplicable(
         kotlinCompilation: KotlinCompilation<*>
-    ): Boolean =
-        kotlinCompilation
+    ) = kotlinCompilation
         .platformType
         .isJvm()
 
     override fun getPluginArtifact(): SubpluginArtifact =
         Dependency.compilerPlugin
+}
+
+private fun Project.addRepositories() {
+    repositories {
+        mavenCentral()
+    }
 }

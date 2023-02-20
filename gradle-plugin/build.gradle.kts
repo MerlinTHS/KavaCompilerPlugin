@@ -6,9 +6,11 @@ plugins {
 }
 
 group = "io.github.merlinths"
-version = "1.0.0"
+version = "1.0.1"
 
 dependencies {
+    api("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.8.0-1.0.8")
+
     implementation(libs.gradle.pluginApi)
 
     implementation(gradleKotlinDsl())
