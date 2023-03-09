@@ -5,21 +5,21 @@ import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.types.*
 
 /**
- * In case [type] is an optional type [handled by Kava][isHandledByKava]
- * this function returns the non-optional type previously wrapped into [type].
+ * Converts a possibly optional [type] to a definitely non-optional.
  *
- * Otherwise, it returns the original [type] argument.
+ * In case [type] is not [handled by Kava][isHandledByKava],
+ * maybe because it's already unwrapped,
+ * this function returns [type] unchanged.
  */
 context (FirSession)
 fun unwrap(type: ConeKotlinType): ConeKotlinType =
     type whenNot { unwrapped }
 
 /**
- * Checks if receiver is an optional type [handles by Kava][isHandledByKava] and calls corresponding
+ * Checks if receiver is an optional type [handles by Kava][isHandledByKava] and calls the corresponding
  * unwrap* method to convert it to a non-optional type in case it is.
  *
  * Returns null when it isn't or the conversion failed.
- *
  */
 // TODO: Tightly couple conditions with the ones checked for [isHandledByKava].
 context (FirSession)
