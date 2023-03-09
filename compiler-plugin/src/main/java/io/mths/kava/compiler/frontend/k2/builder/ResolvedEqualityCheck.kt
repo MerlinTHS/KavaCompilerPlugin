@@ -9,8 +9,12 @@ import org.jetbrains.kotlin.fir.expressions.FirOperation
 import org.jetbrains.kotlin.fir.expressions.builder.buildArgumentList
 import org.jetbrains.kotlin.fir.expressions.builder.buildEqualityOperatorCall
 
+/**
+ * Builds a resolved equality operator call which compares
+ * [leftOperand] and [rightOperand] using the equals (==) operator.
+ */
 context (FirSession)
-fun buildResolvedEqualityCheck(
+fun buildResolvedEquals(
     leftOperand: FirExpression,
     rightOperand: FirExpression
 ): FirEqualityOperatorCall =
