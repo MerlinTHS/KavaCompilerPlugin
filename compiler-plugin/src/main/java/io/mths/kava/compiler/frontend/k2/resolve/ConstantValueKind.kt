@@ -7,10 +7,11 @@ import org.jetbrains.kotlin.fir.resolve.transformers.body.resolve.expectedConeTy
 import org.jetbrains.kotlin.types.ConstantValueKind
 
 /**
- * Creates a [FirConstExpression] from the receivers value and the constant [kind].
+ * Creates a [FirConstExpression] with a resolved typeRef from the receivers value
+ * and the constant [kind].
  */
 context (FirSession)
-infix fun <Type> Type.resolvedAs(
+infix fun <Type> Type.asConstant(
     kind: ConstantValueKind<Type>
 ): FirConstExpression<Type> =
     buildConstExpression(
