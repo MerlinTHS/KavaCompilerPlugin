@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.fir.expressions.builder.buildEqualityOperatorCall
  * [left] and [right] using the equals (==) operator.
  */
 context (FirSession)
-fun buildResolvedEquals(
+fun resolvedEquals(
     left: FirExpression,
     right: FirExpression
 ): FirEqualityOperatorCall =
