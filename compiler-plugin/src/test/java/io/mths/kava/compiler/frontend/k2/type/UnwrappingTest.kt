@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class)
-class KavaTypeUnwrappingTest {
+class UnwrappingTest {
     private val builtIns = BuiltinTypes()
     private val session = mockk<FirSession>()
     private val context = mockk<ConeInferenceContext>()
