@@ -1,6 +1,5 @@
 package io.mths.kava.compiler.frontend.k2.filter.predicates
 
-import io.mths.kava.compiler.frontend.k2.type.loweredReturnType
 import io.mths.kava.compiler.frontend.k2.util.builtIn
 import org.jetbrains.kotlin.fir.BuiltinTypes
 import org.jetbrains.kotlin.fir.FirSession
@@ -15,7 +14,7 @@ import org.jetbrains.kotlin.fir.types.impl.FirImplicitBuiltinTypeRef
  */
 context (FirSession)
 fun <Type : FirFunction> FirFunctionSymbol<Type>.takesSingle(
-    builtinType: BuiltinTypes.() -> FirImplicitBuiltinTypeRef
-): Boolean = with(valueParameterSymbols) {
-    (size == 1) && first().loweredReturnType == builtIn(builtinType)
-}
+    supplyBuiltinType: BuiltinTypes.() -> FirImplicitBuiltinTypeRef
+): Boolean = canBeCalledWith(
+    builtIn(supplyBuiltinType)
+)
