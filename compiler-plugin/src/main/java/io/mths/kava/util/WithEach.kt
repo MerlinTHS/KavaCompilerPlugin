@@ -12,7 +12,7 @@ fun <Type> Array<out Type>.withEach(
 /**
  * Performs the given [action] in the context of each element.
  */
-fun <Type> Collection<Type>.withEach(
+fun <Type> Iterable<Type>.withEach(
     action: Type.() -> Unit
 ) {
     forEach(action)
