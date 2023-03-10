@@ -12,5 +12,5 @@ object IllegalState {
         because("No callable symbol found for $callableId!")
 }
 
-fun because(reason: String) =
+fun IllegalState.because(reason: String) =
     IllegalStateException(reason)

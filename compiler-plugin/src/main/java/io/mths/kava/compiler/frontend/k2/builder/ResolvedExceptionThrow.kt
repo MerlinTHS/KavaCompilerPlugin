@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.expressions.FirThrowExpression
 import org.jetbrains.kotlin.fir.expressions.buildUnaryArgumentList
 import org.jetbrains.kotlin.types.ConstantValueKind
-import io.mths.kava.compiler.KavaClassIds.Exception as ExceptionId
+import io.mths.kava.compiler.KavaClassId.Exception as ExceptionId
 
 /**
  * Returns an expression which throws an [java.lang.Exception]

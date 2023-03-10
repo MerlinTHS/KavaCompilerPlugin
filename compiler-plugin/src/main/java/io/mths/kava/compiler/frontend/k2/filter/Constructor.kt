@@ -1,6 +1,6 @@
 package io.mths.kava.compiler.frontend.k2.filter
 
-import io.mths.kava.compiler.IllegalStates
+import io.mths.kava.compiler.IllegalState
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.resolve.ScopeSession
 import org.jetbrains.kotlin.fir.scopes.getDeclaredConstructors
@@ -40,4 +40,4 @@ fun ClassId.findConstructor(
 ): FirConstructorSymbol =
     toRegularSymbol()
         ?.searchConstructor(predicate)
-        ?: throw IllegalStates.noConstructorFor(this)
+        ?: throw IllegalState.noConstructorFor(this)
