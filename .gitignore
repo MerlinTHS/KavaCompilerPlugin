@@ -8,3 +8,4 @@
 # Project exclude paths
 /compiler-plugin/.gradle/
 /gradle-plugin/.gradle/
+/kotlin-js-store
