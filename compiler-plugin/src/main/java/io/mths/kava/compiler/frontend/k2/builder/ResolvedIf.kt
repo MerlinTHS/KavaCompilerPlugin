@@ -20,7 +20,7 @@ fun resolvedIf(
 
     branches += listOf(
         resolvedThenBranch(condition, thenBranch),
-        resolvedElseBranch(elseBranch)
+        //resolvedElseBranch(elseBranch)
     )
 } resolvedAs typeRef
 

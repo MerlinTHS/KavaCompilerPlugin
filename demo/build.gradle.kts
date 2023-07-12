@@ -3,8 +3,8 @@ import io.mths.kava.gradle.extensions.generated.GeneratedFiles
 import io.mths.kava.gradle.extensions.generated.GeneratedPackage
 
 plugins {
-    kotlin("multiplatform")
     id("io.github.merlinths.kava")
+    kotlin("multiplatform")
 }
 
 repositories {
@@ -12,9 +12,15 @@ repositories {
 }
 
 kotlin {
-    js()
-    jvm()
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                //languageVersion = "2.0"
+            }
+        }
+    }
 }
+
 
 kava {
     enabled = true

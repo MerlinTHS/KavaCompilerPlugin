@@ -4,6 +4,10 @@ import org.jetbrains.kotlin.name.CallableId
 import org.jetbrains.kotlin.name.ClassId
 
 object IllegalState {
+    fun noPropertyFor(callableId: CallableId) =
+        because("No property found for $callableId")
+    fun noClassFor(classId: ClassId) =
+        because("No class found for $classId")
 
     fun noConstructorFor(classId: ClassId) =
         because("No constructor found for $classId!")

@@ -5,15 +5,21 @@ include("demo")
 
 dependencyResolutionManagement {
     versionCatalogs {
+        val kotlinVersion = "1.8.20-Beta"
         create("libs") {
-            version("kotlin", "1.8.0")
-
             library("autoService", "com.google.auto.service", "auto-service")
                 .version("1.0.1")
             library("embeddableCompiler", "org.jetbrains.kotlin", "kotlin-compiler-embeddable")
-                .versionRef("kotlin")
+                .version(kotlinVersion)
             library("gradle-pluginApi", "org.jetbrains.kotlin", "kotlin-gradle-plugin-api")
-                .versionRef("kotlin")
+                .version(kotlinVersion)
+        }
+
+        create("testLibs") {
+            library("kotlinCompile", "dev.zacsweers.kctfork", "core")
+                .version("0.2.1")
+            library("internalCompile", "org.jetbrains.kotlin", "kotlin-compiler-internal-test-framework")
+                .version(kotlinVersion)
         }
     }
 }

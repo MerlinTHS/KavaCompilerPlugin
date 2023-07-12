@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "io.github.merlinths"
-version = "1.0.0"
+version = "2.0.2"
 
 mavenPublishing {
     publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.Companion.S01, true)
@@ -22,7 +22,7 @@ mavenPublishing {
         description.set("Kotlin Compiler Plugin to simplify development with kava.")
 
         inceptionYear.set("2023")
-        url.set("https://github.com/merlinths/kava")
+        url.set("https://github.com/MerlinTHS/KavaCompilerPlugin")
 
         licenses {
             license {
@@ -41,9 +41,9 @@ mavenPublishing {
         }
 
         scm {
-            url.set("https://github.com/MerlinTHS/Kava/")
-            connection.set("scm:git:git://github.com/merlinths/kava.git")
-            developerConnection.set("scm:git:ssh://git@github.com/merlinths/kava.git")
+            url.set("https://github.com/MerlinTHS/KavaCompilerPlugin/")
+            connection.set("scm:git:git://github.com/merlinths/kavacompilerplugin.git")
+            developerConnection.set("scm:git:ssh://git@github.com/merlinths/kavacompilerplugin.git")
         }
     }
 }
@@ -52,6 +52,13 @@ dependencies {
     compileOnly(libs.autoService)
     kapt(libs.autoService)
     compileOnly(libs.embeddableCompiler)
+
+    implementation("io.github.merlinths:kava-annotations:1.0.4")
+
+    testImplementation(testLibs.kotlinCompile)
+    testImplementation(kotlin("test"))
+
+    testImplementation("io.mockk:mockk:1.13.4")
 }
 
 tasks.register("sourcesJar", Jar::class) {
@@ -67,7 +74,7 @@ publishing {
     publications {
         create<MavenPublication>("default") {
             from(components["java"])
-            artifact(tasks["sourcesJar"])
+            //artifact(tasks["sourcesJar"])
 
             pom {
                 name.set("compiler-plugin")
@@ -93,4 +100,16 @@ java {
 
 tasks.withType<KotlinCompilationTask<*>>().configureEach {
     compilerOptions.freeCompilerArgs.add("-opt-in=org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs += listOf("-Xcontext-receivers")
+    }
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
 }

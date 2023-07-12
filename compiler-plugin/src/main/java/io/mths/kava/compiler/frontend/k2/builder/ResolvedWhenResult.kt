@@ -10,6 +10,7 @@ context (FirSession)
 fun FirWhenBranchBuilder.setResolvedResult(
     expression: FirExpression
 ) {
+    source = expression.source
     result = buildBlock {
         statements += expression
     } resolvedAs expression.typeRef

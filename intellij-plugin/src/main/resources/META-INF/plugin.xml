@@ -1,0 +1,14 @@
+<idea-plugin>
+    <id>io.github.merlinths.kava</id>
+    <name>Kava</name>
+    <vendor>MerlinTHS</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <storageComponentContainerContributor implementation="io.mths.kava.compiler.frontend.old.StorageManager" />
+        <analyzeCompleteHandlerExtension implementation="io.mths.kava.compiler.frontend.old.PlatformTypeChecker" />
+        <syntheticResolveExtension implementation="io.mths.kava.compiler.frontend.old.KavaSyntheticsExtension" />
+    </extensions>
+</idea-plugin>

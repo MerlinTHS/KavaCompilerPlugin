@@ -1,7 +1,8 @@
 <h1 align="center">Kava Compiler Plugin
 
 [![Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/io.github.merlinths.kava?style=for-the-badge)]()
-[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-red.svg?style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
+[![K2 Frontend Intermediate Representation](https://img.shields.io/badge/K2%20Compiler-%E2%9C%93-green?style=for-the-badge)]()
+[![Apache license](https://img.shields.io/badge/license-Apache%20License%202.0-red.svg?style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
 </h1>
 
 A Kotlin compiler plugin to simplify development with [Kava](https://github.com/MerlinTHS/Kava).
@@ -25,22 +26,11 @@ Simply apply it in your _build.gradle.kts_.
 plugins {
     id("io.github.merlinths.kava") version "1.0.0"
 }
-``` 
-
-If you want to use the [Kavas Annotation Processor](https://github.com/MerlinTHS/Kava#custom-types),
-you also need to apply the [KSP Compiler - Plugin]() to your project.
-
-```kotlin
-plugins {
-    id("io.github.merlinths.kava") version "1.0.0"
-    id("com.google.devtools.ksp") version "1.8.0-1.0.8"
-}
 ```
 
-> It's important to include kava first! Otherwise, the current Kava version will not be able
-> to generate code properly.
-
-Now you can configure the options in a typesafe manner.
+Now you can configure the processor options in a typesafe manner.
+Sealed classes are used to ensure that the configured options and the relations between them actually make sense.
+For example ```GeneratedPackage.Infer``` will only have an effect, if ```separateFiles``` is set to ```true```.
 
 ```kotlin
 kava {
